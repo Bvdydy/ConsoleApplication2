@@ -7,20 +7,39 @@ int main() {
     setlocale(LC_ALL, "Russian");
     std::cout << std::fixed << std::setprecision(4);
 
-    // ===== ЗАДАНИЕ 1: ИСПРАВЛЕНО — функция sin(x)/x, 10 точек =====
+    // ===== ЗАДАНИЕ 1: Ввод начальной точки интервала =====
     std::cout << "=== ЗАДАНИЕ 1: Вычисление значений функции f(x) = sin(x)/x ===" << std::endl;
-    std::cout << "Интервал: (0, 4]" << std::endl;
 
-    double end = 4.0;
-    int points = 10;  // ИЗМЕНЕНО: с 6 на 10 точек
-    double step = end / points;
+    double start;
+    std::cout << "Введите начальную точку интервала (start, должно быть >= 0 и < 4.0): ";
+    std::cin >> start;
 
+    // Валидация входных данных
+    if (start < 0 || start >= 4.0) {
+        std::cout << "Ошибка: начальная точка должна быть в диапазоне [0, 4.0)" << std::endl;
+        return 1;
+    }
+
+    const double end = 4.0;
+    const int points = 10;
+    double step = (end - start) / points;
+
+    std::cout << "Интервал: (" << start << ", " << end << "]" << std::endl;
     std::cout << "Точка    x        sin(x)/x" << std::endl;
     std::cout << "---------------------------" << std::endl;
 
     for (int i = 1; i <= points; i++) {
-        double x = i * step;
-        double y = sin(x) / x;  // ИЗМЕНЕНО: sin(x) → sin(x)/x
+        double x = start + i * step;
+        double y;
+
+        // Защита от деления на ноль (предел sin(x)/x при x->0 равен 1)
+        if (std::fabs(x) < 1e-9) {
+            y = 1.0;
+        }
+        else {
+            y = std::sin(x) / x;
+        }
+
         std::cout << std::setw(3) << i
             << "    " << std::setw(6) << x
             << "    " << std::setw(8) << y << std::endl;
