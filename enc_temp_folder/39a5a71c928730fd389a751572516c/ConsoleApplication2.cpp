@@ -7,20 +7,20 @@ int main() {
     setlocale(LC_ALL, "Russian");
     std::cout << std::fixed << std::setprecision(4);
 
-    // ===== ЗАДАНИЕ 1: ИСПРАВЛЕНО — функция sin(x)/x, 10 точек =====
+    // ===== ЗАДАНИЕ 1 =====
     std::cout << "=== ЗАДАНИЕ 1: Вычисление значений функции f(x) = sin(x)/x ===" << std::endl;
     std::cout << "Интервал: (0, 4]" << std::endl;
 
     double end = 4.0;
-    int points = 10;  // ИЗМЕНЕНО: с 6 на 10 точек
+    int points = 6;
     double step = end / points;
 
     std::cout << "Точка    x        sin(x)/x" << std::endl;
-    std::cout << "---------------------------" << std::endl;
+    std::cout << "--------------------------" << std::endl;
 
     for (int i = 1; i <= points; i++) {
         double x = i * step;
-        double y = sin(x) / x;  // ИЗМЕНЕНО: sin(x) → sin(x)/x
+        double y = sin(x)/x;
         std::cout << std::setw(3) << i
             << "    " << std::setw(6) << x
             << "    " << std::setw(8) << y << std::endl;
@@ -28,7 +28,7 @@ int main() {
 
     std::cout << "\n----------------------------------------\n" << std::endl;
 
-    // ===== ЗАДАНИЕ 2: Сумма чисел Фибоначчи (без изменений) =====
+    // ===== ЗАДАНИЕ 2 =====
     std::cout << "=== ЗАДАНИЕ 2: Сумма чисел Фибоначчи ===" << std::endl;
     long long MAX;
     std::cout << "Введите максимальное значение суммы (MAX): ";
